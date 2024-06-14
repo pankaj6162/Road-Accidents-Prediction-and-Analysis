@@ -9,25 +9,6 @@ import urllib.parse
 app = Flask(_name_)
 model = joblib.load('litemodel.sav')
 
-from twilio.rest import Client
-
-def sendSMS(account_sid, auth_token, to_number, from_number, message):
-    try:
-        # Initialize Twilio client
-        client = Client(account_sid, auth_token)
-
-        # Send the message
-        message = client.messages.create(
-            body=message,
-            from_=from_number,
-            to=to_number
-        )
-
-        print(f"Message sent successfully! SID: {message.sid}")
-        return "Message sent successfully!"
-    except Exception as e:
-        print(f"Error sending message: {e}")
-        return f"Error sending message: {e}"
 
 
 def cal(ip):
