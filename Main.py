@@ -9,6 +9,25 @@ import urllib.parse
 app = Flask(_name_)
 model = joblib.load('litemodel.sav')
 
+from twilio.rest import Client
+
+def sendSMS(account_sid, auth_token, to_number, from_number, message):
+    try:
+        # Initialize Twilio client
+        client = Client(account_sid, auth_token)
+
+        # Send the message
+        message = client.messages.create(
+            body=message,
+            from_=from_number,
+            to=to_number
+        )
+
+        print(f"Message sent successfully! SID: {message.sid}")
+        return "Message sent successfully!"
+    except Exception as e:
+        print(f"Error sending message: {e}")
+        return f"Error sending message: {e}"
 
 
 def cal(ip):
@@ -70,7 +89,14 @@ def sms():
     light = form_data.get('light', 'Unknown Light Condition')
     roadsc = form_data.get('roadsc', 'Unknown Road Surface Condition')
 
-    
+    # Twilio credentials
+    # account_sid = 'AC4b8095d384b65b66d5bfa1773d51d032'
+    account_sid = 'AC3df56437d1f399b71025fa7b09c1df37'
+    # auth_token = '4cc3f746b399f0c08dc07b0936a1d791'
+    auth_token = '439183246f8469827fd609f12ea7d200'
+    # from_number = '+18562950137'
+    from_number = '+12513091189'
+    to_number = '+916386596735'  # Replace with the recipient's phone number
 
     # Construct message with latitude, longitude, weather, light, and road surface conditions
     if accident_type:
