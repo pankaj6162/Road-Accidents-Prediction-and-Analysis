@@ -7,7 +7,7 @@ import urllib.request
 import urllib.parse
 
 app = Flask(_name_)
-model = joblib.load(r'C:\Users\SHIVANAND PANDEY\OneDrive\Desktop\folder\best-model.sav')
+model = joblib.load('litemodel.sav')
 
 from twilio.rest import Client
 
