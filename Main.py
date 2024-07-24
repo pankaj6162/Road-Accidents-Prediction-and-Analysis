@@ -91,12 +91,12 @@ def sms():
 
     # Twilio credentials
    
-    account_sid = 'AC3df56437d1f3997b09c1df37'
+    account_sid = 'AC3df56437'
 
-    auth_token = '439183246f8469827fd609f00'
+    auth_token = '43918609f00'
 
     from_number = '+12519091189'
-    to_number = '+916386586735'  # Replace with the recipient's phone number
+    to_number = '+916398786735'  # Replace with the recipient's phone number
 
     # Construct message with latitude, longitude, weather, light, and road surface conditions
     if accident_type:
